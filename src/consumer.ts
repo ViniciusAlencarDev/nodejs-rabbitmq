@@ -11,13 +11,11 @@ amqplib.connect('amqp://localhost', (err0: any, connection: any) => {
         }
 
         var queue = 'example';
-        var msg = 'New message';
 
-        channel.assertQueue(queue, {
-            durable: false
+        channel.consume(queue, (msg: any) => {
+            console.log("Message Receive:", msg.content.toString());
+        }, {
+            noAck: true
         });
-
-        channel.sendToQueue(queue, Buffer.from(msg));
-        console.log("Message Sent:", msg);
     });
 });
