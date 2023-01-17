@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsnd src/index.ts",
+    "dev:producer": "tsnd src/index.ts",
+    "dev:consumer": "tsnd src/consumer.ts",
     "build": "tsc",
-    "start": "node index.js"
+    "start:producer": "node dist/index.js",
+    "start:consumer": "node dist/consumer.js"
   },
   "repository": {
     "type": "git",
