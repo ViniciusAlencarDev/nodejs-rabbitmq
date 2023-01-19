@@ -1,5 +1,7 @@
 import amqplib from 'amqplib';
 
+const msgsList = []
+
 amqplib.connect('amqp://localhost', (err0: any, connection: any) => {
     if (err0) {
         throw err0;
@@ -19,5 +21,7 @@ amqplib.connect('amqp://localhost', (err0: any, connection: any) => {
 
         channel.sendToQueue(queue, Buffer.from(msg));
         console.log("Message Sent:", msg);
+
+        msgsList.push(msg)
     });
 });
