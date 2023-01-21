@@ -1,5 +1,7 @@
 import amqplib from 'amqplib';
 
+const msg: Array<any> = []
+
 amqplib.connect('amqp://localhost', (err0: any, connection: any) => {
     if (err0) {
         throw err0;
@@ -14,8 +16,13 @@ amqplib.connect('amqp://localhost', (err0: any, connection: any) => {
 
         channel.consume(queue, (msg: any) => {
             console.log("Message Receive:", msg.content.toString());
+            msg.push(msg.content.toString())
         }, {
             noAck: true
         });
     });
 });
+
+function getMessages(filter: any): Array<any> {
+    return msg.filter(filter);
+}
